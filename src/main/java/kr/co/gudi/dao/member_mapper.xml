@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC	"-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
+>
+<mapper namespace="kr.co.gudi.dao.MemberDAO">
+
+	<insert id="insert" parameterType="hashmap">
+		INSERT INTO member(id,pw,name,age,gender,email)
+			VALUES(#{id},#{pw},#{name},#{age},#{gender},#{email})
+	</insert>
+	
+	<select id="login" resultType="String">
+		SELECT id FROM member WHERE
+			id = #{param1} AND pw = #{param2}	
+	</select>
+	
+	<select id="list" resultType="kr.co.gudi.dto.MemberDTO">
+		SELECT id, name, gender FROM member
+	</select>
+	
+	<delete id="del">
+		DELETE FROM 
+			member WHERE id = #{param1}
+	</delete>
+	
+	<select id="detail" resultType="kr.co.gudi.dto.MemberDTO">
+		SELECT * FROM 
+			member WHERE id = #{param1}
+	</select>
+	
+	<update id="update" parameterType="hashmap">
+		UPDATE member SET
+			pw = #{pw}
+			,name = #{name}
+			,age = #{age}
+			,gender=#{gender}
+			,email=#{email}
+		WHERE id = #{id}
+	</update>
+	
+	
+
+</mapper>
